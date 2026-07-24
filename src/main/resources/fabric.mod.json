@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "villagerchess",
+	"version": "${version}",
+	"name": "Villager Chess",
+	"description": "Play chess against villagers! Their skill scales with their trading level, from Novice pushover to near-unbeatable Master.",
+	"authors": [
+		"foldpaper"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/villagerchess",
+		"sources": "https://github.com/johnnyscriptt/villager-chess",
+		"issues": "https://github.com/johnnyscriptt/villager-chess/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/villagerchess/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.foldpaper.villagerchess.VillagerChess"
+		],
+		"client": [
+			"com.foldpaper.villagerchess.client.VillagerChessClient"
+		]
+	},
+	"mixins": [
+		"villagerchess.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

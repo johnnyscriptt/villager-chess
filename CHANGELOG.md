@@ -1,0 +1,17 @@
+# Changelog
+
+All notable changes to Villager Chess are documented here.
+Format follows [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
+
+## [0.1.0] - 2026-07-24
+
+Initial release.
+
+### Added
+- **Play Chess** button on every villager's trade screen — challenge any villager to a full game of chess (you play White).
+- Difficulty scales with the villager's trading level: Novice (hangs pieces) → Apprentice → Journeyman → Expert → Master (near-unbeatable).
+- Full chess rules: castling, en passant, pawn promotion with a piece picker, threefold repetition, 50-move rule, and insufficient-material draws.
+- Click-to-move board UI with legal-move highlights, check indicator, and Resign/Close buttons.
+- Abandon handling: walking more than 16 blocks away, the villager dying, or disconnecting abandons the game; closing the board resigns.
+- From-scratch chess engine (negamax + alpha-beta + iterative deepening + quiescence search) running on a background thread; move generation is perft-verified.
+- Fully server-authoritative: the server owns all game state; clients only send move attempts.
