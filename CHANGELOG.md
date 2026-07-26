@@ -3,6 +3,11 @@
 All notable changes to Villager Chess are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
+## [0.1.1] - 2026-07-25
+
+### Fixed
+- The **Play Chess** button now stacks below other Villager Games mods' trade-screen buttons instead of landing on the same pixel. With only this mod installed the button is exactly where it was.
+
 ## [0.1.0] - 2026-07-24
 
 Initial release.

@@ -1,5 +1,22 @@
 # Media guide + in-game QA — Villager Chess 0.1.0
 
+> ## Status: session run 2026-07-24 — screenshots DONE, most QA PASSED
+>
+> All six gallery shots are captured in `screenshots/` (a full Novice game was played to
+> checkmate: 1.e4 → 33.Rxa6#). **Verified in-game:** Play Chess button placement, board
+> rendering + click-to-move, legal-move highlights, check state (red king + "Your move —
+> check!"), promotion picker (all 4 choices shown), "You win!" screen + clean close,
+> Resign button (vs the Master), "…is thinking" indicator, material bar, SAN move list —
+> plus castling (11.O-O) and **en passant** (7.exd6) through the click UI.
+>
+> **Trailer: DONE** — `trailer/villager-chess-trailer.mp4`, 46.7 s, 1080p30, built from the
+> two recorded clips plus the gallery stills by `trailer/build_trailer.ps1` (section 4).
+>
+> **Still for a human before upload (5 min):** villager sounds (automation is deaf),
+> walk >16 blocks away mid-game abandons, villager dying mid-game abandons, Esc-close
+> resigns, and the "already playing chess!" busy message (needs a second player). These five
+> are now the *only* thing standing between here and `UPLOAD_CHECKLIST.md`.
+
 This is a **combined session**: the chess UI has never been verified by a human in-game
 (the code is tested, the pixels are not). Every scene below has a **VERIFY** part (QA) and a
 **CAPTURE** part (marketing). Play through in order — if a VERIFY item fails, stop, fix,
@@ -78,28 +95,52 @@ Shot numbers = gallery order on both stores.
 - Consistency sells: same world, same lighting, same GUI scale across all six shots.
 - PNG straight from F2 is fine — don't re-compress.
 
-## 4. The trailer (30–60 s)
+## 4. The trailer — built, not edited
 
-**Recording:** OBS Studio (best) or Xbox Game Bar `Win+Alt+R` (zero setup). 1080p, 60 fps.
-Game audio only — vanilla Minecraft sounds are safe; **don't add music** unless it's
-explicitly licensed (store takedowns aren't worth it).
+`trailer/villager-chess-trailer.mp4` is assembled by **`trailer/build_trailer.ps1`** from
+assets already in this repo: `trailer/seg1.mp4` (walk-up → trade screen → board opens),
+`trailer/seg2.mp4` (move montage), and four of the gallery screenshots. No video editor is
+involved and no further recording is needed.
 
-**Storyboard** (record long, cut hard):
+```powershell
+powershell -File publishing\trailer\build_trailer.ps1
+```
 
-| # | Time | Shot |
-|---|---|---|
-| 1 | 0–5 s | Walk up to a villager in the staged scene, right-click → trade screen. |
-| 2 | 5–8 s | Cursor moves to **Play Chess**, click. Hold one beat on the board appearing. |
-| 3 | 8–25 s | Quick move montage vs the Novice — 4–6 moves, cut between them, don't show every reply. |
-| 4 | 25–33 s | Pawn reaches last rank → promotion picker → queen appears. |
-| 5 | 33–45 s | Cut to the Master game: "…is thinking" message, a strong reply, your reaction move. |
-| 6 | 45–55 s | Checkmate the Novice → "You win!" Hold on the victory screen. |
-| 7 | 55–60 s | End card: freeze on shot ① with the mod name — "**Villager Chess** · Fabric · MC 26.2". |
+**Silent by design.** Neither recorded clip has an audio stream, so the story is told with
+burned-in captions instead. That also sidesteps the music-licensing risk entirely — do not
+add a music bed unless it is explicitly licensed.
 
-**Editing:** Clipchamp (preinstalled on Windows 11) is plenty — trim, cut, one title card.
-Export 1080p. **Upload to YouTube** (public or unlisted — both embed fine), title
-"Villager Chess — Minecraft Fabric mod (26.2)". Put the link in both store descriptions;
-on Modrinth a YouTube URL on its own line auto-embeds.
+**The cut** (46.7 s, 1080p30):
+
+| # | Length | Source | Caption |
+|---|---|---|---|
+| 1 | 2.5 s | title card | **VILLAGER CHESS** · Fabric · Minecraft 26.2 |
+| 2 | 4.4 s | seg1, full frame | "Walk up to any villager" |
+| 3 | 3.0 s | seg1, punch-in | "Right-click → Play Chess" |
+| 4 | 6.6 s | seg1, punch-in | "A real chess engine, in the trade screen" |
+| 5 | 10.7 s | seg2, punch-in, 0.85× | "Click to move · legal moves highlighted" |
+| 6 | 3.5 s | `03-check.png` | "It knows when you're in check" |
+| 7 | 3.5 s | `04-promotion-picker.png` | "Promote to anything" |
+| 8 | 3.5 s | `06-master-thinking.png` | "Level 5 villagers play at Master strength" |
+| 9 | 4.0 s | `05-you-win.png` | "Beat them if you can" |
+| 10 | 5.0 s | `01-play-chess-button.png`, darkened | end card + Modrinth · CurseForge |
+
+**Re-cutting it** means editing the `TUNABLES` block at the top of the script — cut points,
+beat durations, captions, crop — and running it again. `_build/` is scratch and is rebuilt
+every run, so there is no state to clean up. Two things in there are load-bearing and worth
+understanding before you change them:
+
+- **The punch-in.** `crop=1280:720:320:144` then scale back to 1080p. The GUI occupies only
+  the middle third of a 1920-wide frame; without the 1.5× punch-in the board is too small to
+  read on a store page. The crop was measured to contain the trade screen, the Play Chess
+  button, the board, the villager panel and the move list in both clips.
+- **The colour tags.** Video sources and PNG sources land on different colour metadata by
+  default, which puts a mid-file parameter change in the output. Every beat is therefore
+  pinned to `bt709`/`tv` so the concat stays a clean stream copy.
+
+**Upload to YouTube** (public or unlisted — both embed fine), title "Villager Chess —
+Minecraft Fabric mod (26.2)". Put the link in both store descriptions; on Modrinth a YouTube
+URL on its own line auto-embeds.
 
 ## 5. Done?
 

@@ -10,13 +10,16 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.network.chat.Component;
 
 public class VillagerChessClient implements ClientModInitializer {
 	// The merchant GUI texture is 276x166 (see MerchantScreen's constructor).
 	private static final int MERCHANT_GUI_WIDTH = 276, MERCHANT_GUI_HEIGHT = 166;
+	private static final int BUTTON_W = 70, BUTTON_H = 20, STACK_STEP = 22;
 
 	@Override
 	public void onInitializeClient() {
@@ -32,11 +35,26 @@ public class VillagerChessClient implements ClientModInitializer {
 		ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (!(screen instanceof MerchantScreen)) return;
 			int x = scaledWidth / 2 + MERCHANT_GUI_WIDTH / 2 + 4;
-			int y = (scaledHeight - MERCHANT_GUI_HEIGHT) / 2;
+			int y = (scaledHeight - MERCHANT_GUI_HEIGHT) / 2 + STACK_STEP * occupiedRows(screen, x);
+			y = Math.min(y, scaledHeight - BUTTON_H - 2);
 			Screens.getWidgets(screen).add(Button.builder(Component.translatable("villagerchess.play"),
 					button -> ClientPlayNetworking.send(new ChessChallengeC2S()))
-					.bounds(x, y, 70, 20)
+					.bounds(x, y, BUTTON_W, BUTTON_H)
 					.build());
 		});
+	}
+
+	/**
+	 * How many widgets already sit in the column we want, so the sibling Villager Games mods
+	 * stack instead of landing on the same pixel. Vanilla's merchant widgets all live inside
+	 * the 276-wide panel, left of x, so they never count. Which mod gets which row depends on
+	 * init order and may vary between launches — they never overlap, which is the point.
+	 */
+	private static int occupiedRows(Screen screen, int x) {
+		int count = 0;
+		for (AbstractWidget widget : Screens.getWidgets(screen)) {
+			if (widget.getX() + widget.getWidth() > x && widget.getX() < x + BUTTON_W) count++;
+		}
+		return count;
 	}
 }
