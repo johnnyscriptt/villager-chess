@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Chess position with make/unmake on a 0x88 board. Pure Java — no Minecraft imports.
+ * Chess position with make/unmake on a 0x88 board. Pure Java - no Minecraft imports.
  * Pieces are signed: positive white, negative black, types PAWN..KING.
  */
 public final class Board {

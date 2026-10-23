@@ -6,7 +6,7 @@
 	"villagerchess.title": "Chess vs %s",
 	"villagerchess.thinking": "thinking",
 	"villagerchess.status.your_move": "Your move",
-	"villagerchess.status.your_move_check": "Your move — check!",
+	"villagerchess.status.your_move_check": "Your move - check!",
 	"villagerchess.status.thinking": "%s is thinking…",
 	"villagerchess.status.resigned": "You resigned",
 	"villagerchess.status.abandoned": "Game abandoned",

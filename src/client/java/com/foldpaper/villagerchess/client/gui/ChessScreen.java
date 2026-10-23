@@ -8,6 +8,7 @@ import com.foldpaper.villagerchess.net.ChessMoveC2S;
 import com.foldpaper.villagerchess.net.ChessOutcome;
 import com.foldpaper.villagerchess.net.ChessResignC2S;
 import com.foldpaper.villagerchess.net.ChessStateS2C;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
@@ -262,7 +263,7 @@ public class ChessScreen extends Screen {
 	@Override
 	public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
 		if (super.mouseClicked(event, doubleClick)) return true;
-		if (event.button() != 0) return false;
+		if (event.button() != InputConstants.MOUSE_BUTTON_LEFT) return false;
 		int x = (int) event.x(), y = (int) event.y();
 
 		if (game.outcome.isOver()) {

@@ -1,5 +1,5 @@
 <#
-    Villager Chess — trailer builder
+    Villager Chess - trailer builder
 
     Assembles publishing/trailer/villager-chess-trailer.mp4 from the two recorded clips
     plus the six gallery screenshots. Silent by design (neither clip has an audio stream);
@@ -20,7 +20,7 @@ $Build       = Join-Path $Trailer '_build'
 $OutFile     = Join-Path $Trailer 'villager-chess-trailer.mp4'
 
 # ----------------------------------------------------------------------------------
-# TUNABLES — everything you would want to change lives here
+# TUNABLES - everything you would want to change lives here
 # ----------------------------------------------------------------------------------
 
 # Framing. The in-game GUI occupies roughly the middle third of a 1920-wide frame, so the
@@ -52,7 +52,7 @@ $CAP_MASTER   = 'Level 5 villagers play at Master strength'
 $CAP_WIN      = 'Beat them if you can'
 
 $TITLE_MAIN = 'VILLAGER CHESS'
-$TITLE_SUB  = 'Fabric ' + [char]0x00B7 + ' Minecraft 26.2'
+$TITLE_SUB  = 'Fabric ' + [char]0x00B7 + ' Minecraft 26.3'
 $END_SUB    = 'Modrinth ' + [char]0x00B7 + ' CurseForge'
 
 $FONT_FILE  = 'C:\Windows\Fonts\segoeuib.ttf'      # Segoe UI Semibold
@@ -161,7 +161,7 @@ try {
     $txEndSub    = Write-TextFile 'end-sub.txt'      $END_SUB
 
     # ------------------------------------------------------------------------------
-    # Beat 1 — title card
+    # Beat 1 - title card
     # ------------------------------------------------------------------------------
     $vf = "drawtext=fontfile=$($FONT):textfile=$($txTitle):fontcolor=white:fontsize=104" +
           ":x=(w-text_w)/2:y=(h-text_h)/2-40," +
@@ -173,7 +173,7 @@ try {
         -Vf $vf -Out 'beat01.mp4')
 
     # ------------------------------------------------------------------------------
-    # Beat 2 — walking up to the villager (full frame)
+    # Beat 2 - walking up to the villager (full frame)
     # ------------------------------------------------------------------------------
     $vf = "$FULL," + (New-Caption -File $capApproach -Duration $S1_APPROACH_DUR)
     Invoke-FF 'beat 02  walk-up' (New-FFArgs `
@@ -181,7 +181,7 @@ try {
         -Vf $vf -Out 'beat02.mp4')
 
     # ------------------------------------------------------------------------------
-    # Beat 3 — trade screen + Play Chess button (punch-in)
+    # Beat 3 - trade screen + Play Chess button (punch-in)
     # ------------------------------------------------------------------------------
     $vf = "$PUNCH," + (New-Caption -File $capTrade -Duration $S1_TRADE_DUR)
     Invoke-FF 'beat 03  trade screen' (New-FFArgs `
@@ -189,7 +189,7 @@ try {
         -Vf $vf -Out 'beat03.mp4')
 
     # ------------------------------------------------------------------------------
-    # Beat 4 — the board opens
+    # Beat 4 - the board opens
     # ------------------------------------------------------------------------------
     $vf = "$PUNCH," + (New-Caption -File $capBoard -Duration $S1_BOARD_DUR)
     Invoke-FF 'beat 04  board opens' (New-FFArgs `
@@ -197,7 +197,7 @@ try {
         -Vf $vf -Out 'beat04.mp4')
 
     # ------------------------------------------------------------------------------
-    # Beat 5 — move montage, slightly sped up
+    # Beat 5 - move montage, slightly sped up
     # ------------------------------------------------------------------------------
     $movesOut = [math]::Round($S2_MOVES_DUR * $S2_SPEED, 2)
     $vf = "$PUNCH,setpts=$($S2_SPEED)*PTS," + (New-Caption -File $capMoves -Duration $movesOut)
@@ -206,7 +206,7 @@ try {
         -Vf $vf -Out 'beat05.mp4')
 
     # ------------------------------------------------------------------------------
-    # Beats 6-9 — feature stills with a slow push-in
+    # Beats 6-9 - feature stills with a slow push-in
     # ------------------------------------------------------------------------------
     $stills = @(
         @{ n='beat06'; label='beat 06  check';      img=$sources.check;  dur=$D_CHECK;  cap=$capCheck  },
@@ -224,7 +224,7 @@ try {
     }
 
     # ------------------------------------------------------------------------------
-    # Beat 10 — end card over a darkened lead screenshot
+    # Beat 10 - end card over a darkened lead screenshot
     # ------------------------------------------------------------------------------
     $vf = "$FULL,drawbox=x=0:y=0:w=iw:h=ih:color=black@0.62:t=fill," +
           "drawtext=fontfile=$($FONT):textfile=$($txTitle):fontcolor=white:fontsize=96" +

@@ -3,6 +3,16 @@
 All notable changes to Villager Chess are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
+## [0.1.3] - 2026-10-22
+
+### Fixed
+- Pieces can be moved again. On Minecraft 26.3 the board ignored every mouse click, so no piece could be selected or moved.
+
+## [0.1.2] - 2026-09-30
+
+### Changed
+- Updated to Minecraft 26.3 (Fabric Loader 0.19.5, Fabric API 0.161.0+26.3). No gameplay changes.
+
 ## [0.1.1] - 2026-07-25
 
 ### Fixed
@@ -13,7 +23,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/); versions follow 
 Initial release.
 
 ### Added
-- **Play Chess** button on every villager's trade screen — challenge any villager to a full game of chess (you play White).
+- **Play Chess** button on every villager's trade screen - challenge any villager to a full game of chess (you play White).
 - Difficulty scales with the villager's trading level: Novice (hangs pieces) → Apprentice → Journeyman → Expert → Master (near-unbeatable).
 - Full chess rules: castling, en passant, pawn promotion with a piece picker, threefold repetition, 50-move rule, and insufficient-material draws.
 - Click-to-move board UI with legal-move highlights, check indicator, and Resign/Close buttons.

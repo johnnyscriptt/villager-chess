@@ -109,7 +109,7 @@ public final class ClientChessGame {
 	}
 
 	/**
-	 * Piece types (repeated per count) that {@code color} has lost, biggest first —
+	 * Piece types (repeated per count) that {@code color} has lost, biggest first -
 	 * i.e. pass BLACK to get the villager's pieces the player captured.
 	 * Promotions can make counts go negative; those are clamped to zero.
 	 */

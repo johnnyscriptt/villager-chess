@@ -1,6 +1,6 @@
 # Villager Chess
 
-A Fabric mod for Minecraft 26.2: play chess against villagers. Open any villager's
+A Fabric mod for Minecraft 26.3: play chess against villagers. Open any villager's
 trade screen and hit **Play Chess**. The villager's trading level sets its strength:
 
 | Villager level | Chess strength |
@@ -13,12 +13,12 @@ trade screen and hit **Play Chess**. The villager's trading level sets its stren
 
 You always play white. Click a piece, then a highlighted square. Pawns reaching the
 last rank open a promotion picker. Walking away (>16 blocks), the villager dying, or
-disconnecting abandons the game; closing the board resigns it. Just for fun — no
+disconnecting abandons the game; closing the board resigns it. Just for fun - no
 stakes, no rewards.
 
 ## Tech notes
 
-- **Chess core** (`chess/`): pure Java, no Minecraft imports — 0x88 board, full legality
+- **Chess core** (`chess/`): pure Java, no Minecraft imports - 0x88 board, full legality
   (castling, en passant, promotion, pins), Zobrist hashing, threefold/50-move/material
   draws. Verified by perft reference counts.
 - **Engine** (`chess/engine/`): negamax + alpha-beta + iterative deepening + quiescence.
@@ -35,4 +35,4 @@ stakes, no rewards.
 ./gradlew build       # mod jar in build/libs/
 ```
 
-Requires Java 25. Install the jar with Fabric Loader ≥ 0.19.3 + Fabric API for 26.2.
+Requires Java 25. Install the jar with Fabric Loader ≥ 0.19.5 + Fabric API for 26.3.

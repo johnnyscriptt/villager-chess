@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "villagerchess-gametest",
+	"version": "1.0.0",
+	"name": "Villager Chess in-game test",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"com.foldpaper.villagerchess.gametest.PlayMoveGameTest"
+		]
+	},
+	"depends": {
+		"villagerchess": "*"
+	}
+}
